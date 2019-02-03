@@ -1,0 +1,62 @@
+{
+  "id": "d5a98a8b-5a19-49f9-8e54-de3a461686b1",
+  "name": "abm-user-service-local",
+  "values": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "value": "http://localhost:3000",
+      "key": "host",
+      "enabled": true
+    },
+    {
+      "value": "user1545124041871@tvb.com",
+      "key": "email",
+      "enabled": true
+    },
+    {
+      "value": "12345678",
+      "key": "password",
+      "enabled": true
+    },
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "value": "http://adsmgr-api-dev.eastasia.cloudapp.azure.com/auth-service",
+      "key": "authHost",
+      "enabled": true
+    },
+    {
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YzE4NjVjOWYxOTIwODJkMTRmZDg5MTkiLCJlbWFpbCI6ImNvdXBvbi5zdW1tYXJ5LnRlc3QxNTQ1MTAyNzkzMTg3QHR2Yi5jb20iLCJsYW5ndWFnZSI6ImVuZyIsImlzQWRtaW4iOmZhbHNlLCJpc0ZpbmFuY2UiOmZhbHNlLCJpc1ZlcmlmaWVkIjp0cnVlLCJpYXQiOjE1NDUxMDI3MjIsImV4cCI6MTU0NTQ0ODMyMn0.NbNJuT3XblHFKnmKN8ez9DDL8k5bLmZu8vQKGapNQvI",
+      "key": "jwtToken",
+      "enabled": true
+    },
+    {
+      "value": "5c189e274df8b02d3c7bb968",
+      "key": "userId",
+      "enabled": true
+    },
+    {
+      "value": "test-api-key",
+      "key": "apiKey",
+      "enabled": true
+    },
+    {
+      "value": 1545119167377,
+      "key": "testTimestamp",
+      "enabled": true
+    },
+    {
+      "value": "user1545124041871@tvb.com",
+      "key": "normalUserEmail",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2019-01-13T14:07:47.829Z",
+  "_postman_exported_using": "Postman/6.2.5"
+}

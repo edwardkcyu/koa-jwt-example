@@ -1,0 +1,65 @@
+{
+  "name": "koa-jwt",
+  "version": "1.0.0",
+  "description": "Koa and JWT demo",
+  "author": "Edward YU <edwardkcyu@gmail.com>",
+  "license": "MIT",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "debug": "node --nolazy --inspect-brk=9229 src/index.js",
+    "debug:jest": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
+    "lint": "eslint src",
+    "docker:build": "docker build -t edwardkcyu/koa-boilerplate:1.0.0 .",
+    "docker:push": "docker push edwardkcyu/koa-boilerplate:1.0.0",
+    "test": "jest",
+    "test:unit": "jest unit",
+    "test:e2e": "newman run test/e2e/koa-boilerplate.postman_collection.json -e test/e2e/env/local.json"
+  },
+  "dependencies": {
+    "dotenv": "^6.2.0",
+    "http-shutdown": "^1.2.0",
+    "jsonwebtoken": "^8.4.0",
+    "kcors": "^2.2.2",
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-helmet": "^4.0.0",
+    "koa-logger": "^3.2.0",
+    "koa-response-time": "^2.1.0",
+    "koa-router": "^7.4.0",
+    "lodash": "^4.17.11",
+    "lokijs": "^1.5.6",
+    "moment": "^2.24.0",
+    "permit": "^0.2.4",
+    "uuid": "^3.3.2",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "husky": "^1.2.0",
+    "jest": "^23.4.1",
+    "lint-staged": "^8.1.0",
+    "newman": "^4.2.2",
+    "nodemon": "^1.17.3",
+    "prettier": "^1.16.3"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "src/**/*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
+}
