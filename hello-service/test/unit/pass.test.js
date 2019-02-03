@@ -1,0 +1,3 @@
+describe('pass', () => {
+  test('pass', () => {});
+});

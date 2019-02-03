@@ -1,0 +1,44 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: hello-service-prd
+  labels:
+    app: hello-service-prd
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello-service-prd
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: hello-service-prd
+    spec:
+      containers:
+      - name: hello-service-prd-container
+        image: edwardkcyu/hello-service:1.0.0
+        imagePullPolicy: Always
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: PORT
+          value: "3000"
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-service
+spec:
+  selector:
+    app: hello-service-prd
+  type: ClusterIP
+  ports:
+    - port: 3000
+  
