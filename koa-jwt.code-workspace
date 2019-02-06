@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "auth-service"
+		},
+		{
+			"path": "hello-service"
+		}
+	]
+}

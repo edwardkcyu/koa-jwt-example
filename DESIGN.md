@@ -60,6 +60,16 @@ Standardize the way of doing common activities. Mostly used for null/undefined c
 
 ### 1. Constants and static data are put inside a `constants` object.
 
+In this microservice, it is the `HTTP_STATUS`, but could be anything like business actions
+
+```js
+const ORDER_ACTIONS = {
+  CREATE: 'create',
+  TRANSFER: 'transfer,
+  STOP: 'stop'
+}
+```
+
 ### 2. Error handling
 
 `HttpError` class and `error` middleware are used to centralize error handling.
@@ -134,6 +144,35 @@ if (!_.isNil(userName)) {
 
 doAnotherBusinessLogicThatMayThrowError();
 ```
+
+## NAMING CONVENTION
+
+### 1. Source code
+
+- Constants: Upper case letter with underscore
+  - e.g. HTTP_STATUS.BAD_REQUEST = 400
+- Variables: Camel case
+  - e.g. const orderId = 1;
+
+### 2. REST API
+
+- Use nouns in plural forms
+- Maps HTTP methods to corresponding CRUD actions
+
+| Method | Actions  |
+| ------ | -------- |
+| GET    | Retrieve |
+| POST   | Create   |
+| PUT    | Update   |
+| DELETE | Delete   |
+
+For example
+
+```
+POST http://localhost:3000/users/123/books
+```
+
+The above request will create a new Book under User whose user ID is 123
 
 ## UNIT TEST
 
@@ -253,18 +292,22 @@ A Node.js version checking is added to _package.json_
 ```
 
 ## FURTHER IMPROVEMENT
+
 ### 1. Template tool for K8S deployment yaml
+
 Use Helm to generate the deployment yaml files for differnt environments
 
-### 2. Helm chart for deployment management (Questionable) 
+### 2. Helm chart for deployment management (Questionable)
+
 Though Helm has become an official CNCF project and selling its deployment management ability. It's effectiveness and helpfulness are still questionable, can be a good direction to study.
 
 ### 3. Typescript for object type checking (Questionable)
+
 Moving to Node.js from Java world, I personally do not like Strong typing languages that require too much boilerplate codes.
 
 However with the overwhelming popularity of Typescript in JS world, there must be some benefits of using it.
 
-That said, I am still favour the clean and officially supported native Node.js coding style, without transpilation (either with Typescript transpiler or Babel). I would prefer using more unit tests for logic checking. 
+That said, I am still favour the clean and officially supported native Node.js coding style, without transpilation (either with Typescript transpiler or Babel). I would prefer using more unit tests for logic checking.
 
 ## CONSIDERATION
 
@@ -279,5 +322,3 @@ gRPC can be a future for microservices communication because of its lightweight-
 However, there does not seem to be a promising gRPC framework for Node.js. Maybe gRPC is still not mature enough in Node.js ecosystem. (seems better in Go).
 
 Anyway, can be a good direction for the comming study.
-
-
