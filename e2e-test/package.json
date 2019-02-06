@@ -1,0 +1,13 @@
+{
+  "name": "koa-jwt-e2e-test",
+  "version": "1.0.0",
+  "description": "e2e-test",
+  "author": "Edward YU <edwardkcyu@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "newman run koa-jwt.postman.json -e env/local.json"
+  },
+  "devDependencies": {
+    "newman": "^4.3.1"
+  }
+}
