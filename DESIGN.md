@@ -15,16 +15,16 @@ I personally consider Koa as the next generation of Express. The reason for choo
 
 ### 2. [Winston](https://github.com/winstonjs/winston) - asynchronous logging
 
-Console.log may affect application perfermance, as it is synchronous when logging to the terminal or a file.
+`console.log` may affect application perfermance, as it is synchronous when logging to the terminal or a file.
 Winston provides an asynchronous logging feature to cater this issue.
-Also to standardize the logging format.
+It is also used to standardize the logging format.
 
 ### 3. Middlewares
 
-Most middlewares selected here provides zero-configuration usage and add oppionated best practices
+Most middlewares selected here can be used with zero-configuration
 
 - kcors
-  - support cross domain access for front end and add security restriction to headers
+  - support cross domain access for frontend and add security restriction to headers
 - koa-bodyparser
   - standardizing the way of getting request body
 - koa-helmet
@@ -37,10 +37,10 @@ Most middlewares selected here provides zero-configuration usage and add oppiona
 ### 4. [Permit](https://github.com/ianstormtaylor/permit)
 
 A way to isolate the token extraction logic.
-One popular option is to use [Passport](http://www.passportjs.org/), but personally do not like it. Reasons:
+One popular option is to use [Passport](http://www.passportjs.org/), but I personally do not like it. Reasons:
 
 - Tightly coupled to Express, not Koa friendly.
-- the coding style is callback-based, which I will strictly avoid and prefer async/await style
+- the coding style is callback-based, which I will strictly avoid and prefer `async/await` style
 
 To standardize the way of getting Bearer token(JWT) from authorization header, no more manual string parsing.
 In case the authentication method are changed later, this library also supports
@@ -54,7 +54,10 @@ This is also one of the [Top 45 Node.js libraries in 2018](https://medium.mybrid
 
 ### 5. Lodash
 
-Standardize the way of doing common activities. Mostly used for null/undefined checking and picking/omitting fields from an object.
+Standardize the way of doing common activities. Mostly used for
+
+1. Checking null/undefined values
+2. Picking/omitting fields from an object.
 
 ### 6. Dotenv
 
@@ -62,13 +65,13 @@ Externalize environment specific configuration to environment variables. As a re
 
 ## LIBRARY VERSION CONTROL
 
-It is a common practice to use the exact version of library to ensure the applicaiton running on your local machine is exactly the same as the one running on production.
+It is a common practice to use the exact version for libraries to ensure the application running on your on the development environment is exactly the same as the one running on production.
 
 This practice is achieved by using the `yarn.lock` file to freeze the versions in the whole dependency tree.
 
 ## CHOOSE YARN OVER NPM
 
-I like `yarn` more than `npm`, as it provides a cache mechanism to faster dependency download.
+I like `yarn` more than `npm`, as it provides a cache mechanism for faster dependency download.
 
 When using as a CLI, developers can type less and save more energy
 
@@ -86,9 +89,17 @@ npm run some-script
 
 ### 1. Constants and static data are put inside a `constants` object.
 
-In this microservice, it is the `HTTP_STATUS`, but could be anything like business actions
+Examples
 
 ```js
+const HTTP_STATUS = {
+  OK: 200,
+  CREATED: 201,
+  BAD_REQUEST: 400,
+  UNAUTHORIZED: 401,
+  SERVER_ERROR: 500
+};
+
 const ORDER_ACTIONS = {
   CREATE: "create",
   TRANSFER: "transfer",
@@ -128,7 +139,6 @@ try {
 
 if (!_.isNil(userName)) {
   try {
-    // logic that throw expected or unexpected error
     doAnotherBusinessLogicThatMayThrowError();
   } catch (e) {
     ctx.status = 500;
@@ -152,8 +162,8 @@ VS
 
 GOOD
 
-- same way of handling exception cases, just throw an HTTP error
-- no more worry for unhandled exception, , error middleware will handle all the rest
+- just throw an HTTP error for any exception case
+- error middleware will handle all the rest
 
 ```js
 // service-logic.js
@@ -212,7 +222,7 @@ Unit test is necessary for any application. Among the popular testing libraries,
 
 - Test runner
 - Assertion library
-- Auto expected results writer with Snapshot
+- Automate the writing of expected results with [Snapshot](https://jestjs.io/docs/en/snapshot-testing)
 
 ## CODING STYLE
 
@@ -231,7 +241,7 @@ No more code style arguments between team members, everyone just follow the agre
 
 ### 3. Auto linting and formatting on pre-commit
 
-To ensure all commits are in good quality(e.g. linted, formatted, no whitespace-only changes), pre-commit checking is added by libraries `husky` and `lint-staged`
+To ensure the source code are linted, formatted and extra whitespace removed, `pre-commit` checking is added by libraries `husky` and `lint-staged`. Configurations are set in `package.json`
 
 - `husky` is for adding a pre-commit hook
   ```json
@@ -266,7 +276,7 @@ To ensure all commits are in good quality(e.g. linted, formatted, no whitespace-
   2. Offer async/await and array performance improvements
 - Use `alpine` for security reason and lighter weight
 - Add `curl` for production analysis
-- Add `tzdata` to change the OS timezone to HONG KONG for easier problem diagnosis
+- VMs in cloud will normally have timezone +00:00, adding `tzdata` to change the timezone to HONG KONG for easier log tracing
 - `yarn test --silent` will fail a docker image build if the unit test failed to run
 - Single-stage vs multi-stage
   - Compare to Go, Javascript is a runtime language that does not require compilation, so I will prefer to use single stage Dockerfile to build the docker image
@@ -335,7 +345,7 @@ However with the overwhelming popularity of Typescript in JS world, there must b
 
 That said, I am still favour the clean and officially supported native Node.js coding style, without transpilation (either with Typescript transpiler or Babel). I would prefer using more unit tests for logic checking.
 
-### 4. End-TO-END TEST
+### 4. End-to-End Test
 
 Postman released a CLI, [newman](https://github.com/postmanlabs/newman), for running Postman test cases with Node.js projects. Maybe it is useful to have quick end-to-end test. Still thinking a good way to make use of it.
 
