@@ -56,6 +56,10 @@ This is also one of the [Top 45 Node.js libraries in 2018](https://medium.mybrid
 
 Standardize the way of doing common activities. Mostly used for null/undefined checking and picking/omitting fields from an object.
 
+### 6. Dotenv
+
+Externalize environment specific configuration to environment variables. As a result, we can use the same source code and docker image for different environment
+
 ## CODING PRACTICES
 
 ### 1. Constants and static data are put inside a `constants` object.
@@ -182,12 +186,6 @@ Unit test is necessary for any application. Among the popular testing libraries,
 - Assertion library
 - Auto expected results writer with Snapshot
 
-## End-TO-END TEST
-
-It is also useful to have end-to-end test for a quick integration or regression test. Postman's CLI, [newman](https://github.com/postmanlabs/newman), will be a good fit for this case.
-
-Test cases are created from Postman GUI, and exported as json for running with `yarn`.
-
 ## CODING STYLE
 
 To ensure the quality of source code, Eslint and Prettier are used to do code linting and formating.
@@ -308,6 +306,10 @@ Moving to Node.js from Java world, I personally do not like Strong typing langua
 However with the overwhelming popularity of Typescript in JS world, there must be some benefits of using it.
 
 That said, I am still favour the clean and officially supported native Node.js coding style, without transpilation (either with Typescript transpiler or Babel). I would prefer using more unit tests for logic checking.
+
+### 4. End-TO-END TEST
+
+Postman released a CLI, [newman](https://github.com/postmanlabs/newman), for running Postman test cases with Node.js projects. Maybe it is useful to have quick end-to-end test. Still thinking a good way to make use of it.
 
 ## CONSIDERATION
 
