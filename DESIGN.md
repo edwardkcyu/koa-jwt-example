@@ -60,6 +60,28 @@ Standardize the way of doing common activities. Mostly used for null/undefined c
 
 Externalize environment specific configuration to environment variables. As a result, we can use the same source code and docker image for different environment
 
+## LIBRARY VERSION CONTROL
+
+It is a common practice to use the exact version of library to ensure the applicaiton running on your local machine is exactly the same as the one running on production.
+
+This practice is achieved by using the `yarn.lock` file to freeze the versions in the whole dependency tree.
+
+## CHOOSE YARN OVER NPM
+
+I like `yarn` more than `npm`, as it provides a cache mechanism to faster dependency download.
+
+When using as a CLI, developers can type less and save more energy
+
+```bash
+# yarn
+yarn
+yarn some-script
+
+# npm
+npm install
+npm run some-script
+```
+
 ## CODING PRACTICES
 
 ### 1. Constants and static data are put inside a `constants` object.
@@ -68,10 +90,10 @@ In this microservice, it is the `HTTP_STATUS`, but could be anything like busine
 
 ```js
 const ORDER_ACTIONS = {
-  CREATE: 'create',
-  TRANSFER: 'transfer,
-  STOP: 'stop'
-}
+  CREATE: "create",
+  TRANSFER: "transfer",
+  STOP: "stop"
+};
 ```
 
 ### 2. Error handling
@@ -170,13 +192,19 @@ doAnotherBusinessLogicThatMayThrowError();
 | PUT    | Update   |
 | DELETE | Delete   |
 
-For example
+For example, the following request will create a new Book under User whose user ID is 123
 
 ```
 POST http://localhost:3000/users/123/books
 ```
 
-The above request will create a new Book under User whose user ID is 123
+Regarding the auth service and hello service, extra API endpoints are provided for
+
+| Required endpoint | Extra endpoint       |
+| ----------------- | -------------------- |
+| POST /register    | POST /users          |
+| POST /login       | POST /sessions       |
+| GET /hello        | GET /greetings/hello |
 
 ## UNIT TEST
 
@@ -310,6 +338,8 @@ That said, I am still favour the clean and officially supported native Node.js c
 ### 4. End-TO-END TEST
 
 Postman released a CLI, [newman](https://github.com/postmanlabs/newman), for running Postman test cases with Node.js projects. Maybe it is useful to have quick end-to-end test. Still thinking a good way to make use of it.
+
+A demo project is prepared in [e2e-test](./e2e-test).
 
 ## CONSIDERATION
 

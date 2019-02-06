@@ -8,6 +8,9 @@
 		},
 		{
 			"path": "hello-service"
+		},
+		{
+			"path": "e2e-test"
 		}
 	]
 }
