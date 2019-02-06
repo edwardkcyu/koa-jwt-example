@@ -27,12 +27,12 @@ spec:
         - name: NODE_ENV
           value: "development"
         - name: PORT
-          value: "6010"
+          value: "6020"
         - name: AUTH_SERVICE_URL
           value: 'auth-service.default.svc.cluster.local'
         
         ports:
-        - containerPort: 6010
+        - containerPort: 6020
 ---
 apiVersion: v1
 kind: Service
@@ -43,5 +43,5 @@ spec:
     app: hello-service-dev
   type: ClusterIP
   ports:
-    - port: 6010
+    - port: 6020
   

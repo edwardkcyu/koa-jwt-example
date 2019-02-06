@@ -7,7 +7,7 @@ WORKDIR /app
 COPY . .
 RUN yarn 
 RUN yarn test --silent 
-EXPOSE 6010 
+EXPOSE 6020 
 CMD [ "yarn", "start" ]
 
 ## --- Multi-stage --- ##
@@ -23,6 +23,6 @@ CMD [ "yarn", "start" ]
 # RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 # WORKDIR /app
 # COPY --from=builder /app /app
-# EXPOSE 6010 
+# EXPOSE 6020 
 # CMD [ "yarn", "start" ]
 
