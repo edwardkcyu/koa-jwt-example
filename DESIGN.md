@@ -34,7 +34,7 @@ Most middlewares selected here provides zero-configuration usage and add oppiona
 - koa-response-time
   - add the response time to response header for easy performance diagnosis
 
-### 4. [Permit](https://github.com/ianstormtaylor/permit) -
+### 4. [Permit](https://github.com/ianstormtaylor/permit)
 
 A way to isolate the token extraction logic.
 One popular option is to use [Passport](http://www.passportjs.org/), but personally do not like it. Reasons:

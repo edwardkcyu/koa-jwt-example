@@ -28,6 +28,8 @@ spec:
           value: "production"
         - name: PORT
           value: "6020"
+        - name: JWT_SECRET
+          value: "PRD_JWT_SECRET"
         ports:
         - containerPort: 6020
 ---
