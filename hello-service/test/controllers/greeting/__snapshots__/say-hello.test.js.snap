@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`root route error when missing authorization header 1`] = `
+Object {
+  "error": Object {
+    "code": "E001",
+    "message": "Authentication required!",
+  },
+}
+`;
+
+exports[`root route retrieves user name 1`] = `
+Object {
+  "message": "Hello curry",
+}
+`;

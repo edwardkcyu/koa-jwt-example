@@ -1,14 +1,38 @@
-# Koa-JWT
+# Hello Service
 
-### Usage
+## Usage
 
-1. run `yarn start` to start server
+### PRODUCTION START
 
-### Testing
+```
+yarn start
+```
 
-1. run `yarn test` for tests
+### DEVELOPMENT START
 
-### Server Configuration
+```
+yarn dev
+```
+
+### UNIT TEST
+
+```
+yarn test
+```
+
+### BUILD DOCKER IMAGE
+
+```
+yarn docker:build
+```
+
+### PUSH DOCKER IMAGE
+
+```
+yarn docker:push
+```
+
+### Environment Configuration
 
 You can use `.env` file, to configure project like this:
 

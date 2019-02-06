@@ -14,7 +14,7 @@ const koaLogger = require('koa-logger');
 const cors = require('kcors');
 const bodyParser = require('koa-bodyparser');
 const routes = require('./routes');
-const error = require('./middlewares/error');
+const middlewares = require('./middlewares');
 
 app.use(responseTime());
 app.use(helmet());
@@ -22,7 +22,8 @@ app.use(helmet());
 if (!config.env.isProd) {
   app.use(koaLogger());
 }
-app.use(error);
+app.use(middlewares.error);
+app.use(middlewares.auth);
 
 app.use(cors(config.cors));
 app.use(bodyParser());

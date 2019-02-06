@@ -7,6 +7,7 @@ const isDev = NODE_ENV === 'development';
 const config = {
   port: PORT,
 
+  nodeEnv: NODE_ENV,
   env: {
     isDev,
     isProd,

@@ -5,6 +5,9 @@
   "author": "Edward YU <edwardkcyu@gmail.com>",
   "license": "MIT",
   "main": "src/index.js",
+  "engines": {
+    "node": ">=8.0.0"
+  },
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
@@ -13,9 +16,7 @@
     "lint": "eslint src",
     "docker:build": "docker build -t edwardkcyu/koa-jwt-hello-service:1.0.0 .",
     "docker:push": "docker push edwardkcyu/koa-jwt-hello-service:1.0.0",
-    "test": "jest",
-    "test:unit": "jest unit",
-    "test:e2e": "newman run test/e2e/koa-jwt-hello-service.postman_collection.json -e test/e2e/env/local.json"
+    "test": "jest"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -39,7 +40,8 @@
     "lint-staged": "^8.1.0",
     "newman": "^4.2.2",
     "nodemon": "^1.17.3",
-    "prettier": "^1.16.3"
+    "prettier": "^1.16.3",
+    "supertest": "^3.4.2"
   },
   "jest": {
     "testEnvironment": "node"
