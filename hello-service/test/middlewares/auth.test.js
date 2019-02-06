@@ -15,7 +15,7 @@ describe('Auth middleware', () => {
   });
 
   afterEach(() => {
-    axios.mockRestore();
+    jest.resetAllMocks();
   });
 
   test('works', async () => {

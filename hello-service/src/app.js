@@ -6,8 +6,6 @@ const Koa = require('koa');
 
 const app = new Koa();
 
-app.keys = [config.secret];
-
 const responseTime = require('koa-response-time');
 const helmet = require('koa-helmet');
 const koaLogger = require('koa-logger');

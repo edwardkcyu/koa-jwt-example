@@ -1,8 +1,9 @@
 require('dotenv').config();
 
+const { port } = require('./config');
+
 const logger = require('./lib/logger');
 
-const { port } = require('./config');
 const app = require('./app');
 
 async function main() {

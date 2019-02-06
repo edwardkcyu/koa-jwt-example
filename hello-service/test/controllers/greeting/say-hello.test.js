@@ -8,7 +8,7 @@ const axios = require('axios');
 const app = require('../../../src/app');
 const { HTTP_STATUS } = require('../../../src/lib/constants');
 
-describe('root route', () => {
+describe('GET /hello', () => {
   beforeEach(() => {
     axios.mockResolvedValue({ data: { userName: 'curry' } });
   });

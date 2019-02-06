@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`root route error when missing authorization header 1`] = `
+exports[`GET /hello error when missing authorization header 1`] = `
 Object {
   "error": Object {
     "code": "E001",
@@ -9,7 +9,7 @@ Object {
 }
 `;
 
-exports[`root route retrieves user name 1`] = `
+exports[`GET /hello retrieves user name 1`] = `
 Object {
   "message": "Hello curry",
 }
