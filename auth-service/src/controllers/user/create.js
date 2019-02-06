@@ -1,16 +1,13 @@
-const uuid = require('uuid/v4');
 const _ = require('lodash');
 const moment = require('moment');
 
 const { hash } = require('../../lib/utils');
-const { getUserModel } = require('../../models');
+const { User } = require('../../models');
 const HttpError = require('../../lib/HttpError');
 const { HTTP_STATUS } = require('../../lib/constants');
 
 async function register(ctx) {
   const { userName, password } = ctx.request.body;
-
-  const User = getUserModel();
 
   if (_.isNil(userName)) {
     throw new HttpError({
@@ -24,13 +21,13 @@ async function register(ctx) {
     throw new HttpError({
       code: 'E002',
       status: HTTP_STATUS.BAD_REQUEST,
-      message: 'Password name should not be empty'
+      message: 'Password should not be empty'
     });
   }
 
-  let user = User.findOne({ name: userName });
+  const existingUser = await User.findOne({ name: userName });
 
-  if (user) {
+  if (existingUser) {
     throw new HttpError({
       code: 'E003',
       status: HTTP_STATUS.BAD_REQUEST,
@@ -38,15 +35,15 @@ async function register(ctx) {
     });
   }
 
-  const userId = uuid();
-  const now = moment();
-  user = User.insert({ id: userId, name: userName, hashedPassword: hash(password), createdAt: now });
+  const now = new Date();
+  const user = new User({ name: userName, hashedPassword: hash(password), createdAt: now });
+  const insertedUser = await user.save();
 
   ctx.status = HTTP_STATUS.CREATED;
   ctx.body = {
-    userId,
+    userId: insertedUser._id,
     userName,
-    createdAt: now.format('YYYY-MM-DD HH:mm:ss')
+    createdAt: moment(now).format('YYYY-MM-DD HH:mm:ss')
   };
 }
 

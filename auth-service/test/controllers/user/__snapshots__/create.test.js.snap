@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`POST /users responses error if password is empty 1`] = `
+Object {
+  "error": Object {
+    "code": "E002",
+    "message": "Password should not be empty",
+  },
+}
+`;
+
+exports[`POST /users responses error if user already exists 1`] = `
+Object {
+  "error": Object {
+    "code": "E003",
+    "message": "User(curry) already exists",
+  },
+}
+`;
+
+exports[`POST /users responses error if user name is empty 1`] = `
+Object {
+  "error": Object {
+    "code": "E001",
+    "message": "User name should not be empty",
+  },
+}
+`;
+
+exports[`POST /users successfully registers a user 1`] = `
+Object {
+  "createdAt": Any<String>,
+  "userId": "1a2b3c",
+  "userName": "curry",
+}
+`;

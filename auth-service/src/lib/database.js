@@ -1,29 +1,28 @@
-const loki = require('lokijs');
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+const { MongoMemoryServer } = require('mongodb-memory-server');
+
 const logger = require('./logger');
 
-const db = new loki('data.db', {
-  autosave: true,
-  autosaveInterval: 4000
-});
+async function connectDatabase() {
+  const mongod = new MongoMemoryServer({
+    instance: {
+      dbName: 'koajwt'
+    }
+  });
 
-function databaseInitialize() {
-  const users = db.getCollection('users');
-  if (users === null) {
-    logger.info('create collection: users');
-    db.addCollection('users');
-  }
+  const uri = await mongod.getConnectionString();
 
-  logger.info('Database has been initialized');
-}
+  try {
+    await mongoose.connect(uri, { useNewUrlParser: true });
 
-db.loadDatabase({}, function(err) {
-  if (err) {
-    logger.error('error loading database');
-    logger.error(err);
+    logger.info('Database connected');
+  } catch (e) {
+    logger.error(e);
     process.exit(1);
   }
 
-  databaseInitialize();
-});
+  return mongod;
+}
 
-module.exports = db;
+module.exports = connectDatabase;

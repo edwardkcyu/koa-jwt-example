@@ -4,7 +4,7 @@ const moment = require('moment');
 
 const { jwtSecret } = require('../../config');
 const { hash } = require('../../lib/utils');
-const { getUserModel } = require('../../models');
+const { User } = require('../../models');
 const HttpError = require('../../lib/HttpError');
 const { HTTP_STATUS } = require('../../lib/constants');
 
@@ -23,13 +23,11 @@ async function login(ctx) {
     throw new HttpError({
       code: 'E002',
       status: HTTP_STATUS.BAD_REQUEST,
-      message: 'Password name should not be empty'
+      message: 'Password should not be empty'
     });
   }
 
-  const User = getUserModel();
-
-  const user = User.findOne({ name: userName });
+  const user = await User.findOne({ name: userName });
 
   if (!user) {
     throw new HttpError({
@@ -49,9 +47,11 @@ async function login(ctx) {
     });
   }
 
+  const now = new Date();
+
   const payload = {
     userName,
-    createdAt: moment().format('YYYY-MM-DD HH:mm:ss')
+    createdAt: moment(now).format('YYYY-MM-DD HH:mm:ss')
   };
 
   const token = jwt.sign(payload, jwtSecret, {

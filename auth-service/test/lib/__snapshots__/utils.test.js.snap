@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`utils.hash correctly create SHA256 hash 1`] = `"cba0021ca36477ed4be95626316ac66e31ef7d73e8f9e3888e36737e1a9ae597"`;
+
+exports[`utils.hash throw error for null input 1`] = `"Error creating hash value"`;
+
+exports[`utils.hash throw error for undefined input 1`] = `"Error creating hash value"`;

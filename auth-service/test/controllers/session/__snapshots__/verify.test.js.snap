@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GET /sessions responses error if invalid token 1`] = `
+Object {
+  "error": Object {
+    "code": "E002",
+    "message": "Invalid authentication",
+  },
+}
+`;
+
+exports[`GET /sessions responses error if missing authorization header 1`] = `
+Object {
+  "error": Object {
+    "code": "E001",
+    "message": "Authentication required!",
+  },
+}
+`;
+
+exports[`GET /sessions successfully verify JWT token 1`] = `
+Object {
+  "createdAt": Any<String>,
+  "userName": "curry",
+}
+`;

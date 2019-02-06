@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`POST /sessions responses error if empty password 1`] = `
+Object {
+  "error": Object {
+    "code": "E002",
+    "message": "Password should not be empty",
+  },
+}
+`;
+
+exports[`POST /sessions responses error if empty user name 1`] = `
+Object {
+  "error": Object {
+    "code": "E001",
+    "message": "User name should not be empty",
+  },
+}
+`;
+
+exports[`POST /sessions responses error if user not found 1`] = `
+Object {
+  "error": Object {
+    "code": "E003",
+    "message": "User(curry) not found",
+  },
+}
+`;
+
+exports[`POST /sessions successfully login 1`] = `
+Object {
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImN1cnJ5IiwiY3JlYXRlZEF0IjoiMjAxOS0wMi0wNiAyMTo0MDozOSIsImlhdCI6MTU0OTQ2MDQzOSwiZXhwIjoxNTQ5NDYwNTU5fQ.ufxV-E4datBuELTzD1CmVlbd3Tbu_n3caWobwewR-kk",
+}
+`;
