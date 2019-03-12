@@ -1,5 +1,5 @@
 {
-  "name": "koa-jwt",
+  "name": "koa-jwt-auth-service",
   "version": "1.0.0",
   "description": "Koa and JWT demo",
   "author": "Edward YU <edwardkcyu@gmail.com>",
@@ -14,8 +14,8 @@
     "debug": "node --nolazy --inspect-brk=9229 src/index.js",
     "debug:jest": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
     "lint": "eslint src",
-    "docker:build": "docker build -t edwardkcyu/koa-boilerplate:1.0.0 .",
-    "docker:push": "docker push edwardkcyu/koa-boilerplate:1.0.0",
+    "docker:build": "docker build -t edwardkcyu/koa-jwt-auth-service:1.0.0 .",
+    "docker:push": "docker push edwardkcyu/koa-jwt-auth-service:1.0.0",
     "test": "jest"
   },
   "dependencies": {

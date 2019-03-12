@@ -208,14 +208,6 @@ For example, the following request will create a new Book under User whose user 
 POST http://localhost:3000/users/123/books
 ```
 
-Regarding the auth service and hello service, extra API endpoints are provided for
-
-| Required endpoint | Extra endpoint       |
-| ----------------- | -------------------- |
-| POST /register    | POST /users          |
-| POST /login       | POST /sessions       |
-| GET /hello        | GET /greetings/hello |
-
 ## UNIT TEST
 
 Unit test is necessary for any application. Among the popular testing libraries, I want to simplify the whole thing with only one library `Jest` for:
@@ -223,6 +215,12 @@ Unit test is necessary for any application. Among the popular testing libraries,
 - Test runner
 - Assertion library
 - Automate the writing of expected results with [Snapshot](https://jestjs.io/docs/en/snapshot-testing)
+
+## END-TO-END TEST
+
+Postman released a CLI, [newman](https://github.com/postmanlabs/newman), for running Postman test cases with Node.js projects. Maybe it is useful to have quick end-to-end test. Still thinking a good way to make use of it.
+
+A demo project is prepared in [e2e-test](./e2e-test).
 
 ## CODING STYLE
 
@@ -278,9 +276,24 @@ To ensure the source code are linted, formatted and extra whitespace removed, `p
 - Add `curl` for production analysis
 - VMs in cloud will normally have timezone +00:00, adding `tzdata` to change the timezone to HONG KONG for easier log tracing
 - `yarn test --silent` will fail a docker image build if the unit test failed to run
-- Single-stage vs multi-stage
-  - Compare to Go, Javascript is a runtime language that does not require compilation, so I will prefer to use single stage Dockerfile to build the docker image
-  - To demo the idea, multiple-stage commands will be provided as comments in `Dockerfile`
+
+Leverage build cache
+
+- The basic rule is to move the most static layer to the top, the most dynamic layer to the bottom
+
+For example, the following layers 
+```dockerfile
+COPY package.json yarn.lock ./
+yarn
+``` 
+are separated from
+
+```dockerfile
+COPY . .
+yarn test --silent
+```
+
+The reason is `package.json` and `yarn.lock` are more static than the source code
 
 ### 2. Kubernetes
 
@@ -327,40 +340,6 @@ A Node.js version checking is added to _package.json_
 },
 ```
 
-## FURTHER IMPROVEMENT
-
-### 1. Template tool for K8S deployment yaml
-
-Use Helm to generate the deployment yaml files for differnt environments
-
-### 2. Helm chart for deployment management (Questionable)
-
-Though Helm has become an official CNCF project and selling its deployment management ability. It's effectiveness and helpfulness are still questionable, can be a good direction to study.
-
-### 3. Typescript for object type checking (Questionable)
-
-Moving to Node.js from Java world, I personally do not like Strong typing languages that require too much boilerplate codes.
-
-However with the overwhelming popularity of Typescript in JS world, there must be some benefits of using it.
-
-That said, I am still favour the clean and officially supported native Node.js coding style, without transpilation (either with Typescript transpiler or Babel). I would prefer using more unit tests for logic checking.
-
-### 4. End-to-End Test
-
-Postman released a CLI, [newman](https://github.com/postmanlabs/newman), for running Postman test cases with Node.js projects. Maybe it is useful to have quick end-to-end test. Still thinking a good way to make use of it.
-
-A demo project is prepared in [e2e-test](./e2e-test).
-
-## CONSIDERATION
-
-### 1. File logs
+## LOGGING CONSIDERATION
 
 It is a common practice to write system and audit logs to files with rotation. With microservice architecture using Kubernetes, any log writing to the terminal will be output to file in every Node with path `/var/lib/docker/containers` or `/var/lib/containers`. Therefore, instead of writing file logs, I will prefer simply writing to the `stdout/stderr` and collect the logs with ELK/EFK stack.
-
-### 2. gRPC
-
-gRPC can be a future for microservices communication because of its lightweight-ness, it will be interesting to study the usability in Node.js.
-
-However, there does not seem to be a promising gRPC framework for Node.js. Maybe gRPC is still not mature enough in Node.js ecosystem. (seems better in Go).
-
-Anyway, can be a good direction for the comming study.

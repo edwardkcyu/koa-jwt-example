@@ -1,4 +1,4 @@
-# Koa-JWT
+# Koa-JWT-Example
 
 ## Overview
 
